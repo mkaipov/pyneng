@@ -1,4 +1,5 @@
 # -*- coding: utf-8 -*-
+import binascii
 """
 Задание 4.7
 
@@ -16,3 +17,5 @@
 """
 
 mac = "AAAA:BBBB:CCCC"
+hex_to_bin = "{:b}".format(int(mac.replace(":", ""), 16))
+print(hex_to_bin)
