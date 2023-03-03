@@ -1,4 +1,5 @@
 # -*- coding: utf-8 -*-
+import re
 """
 Задание 4.6
 
@@ -21,8 +22,8 @@ ospf_route. Значения из строки ospf_route надо получи�
 """
 
 ospf_route = "      10.0.24.0/24 [110/41] via 10.0.13.3, 3d18h, FastEthernet0/0"
-
-route_info = ospf_route.replace(',', '').replace('[', '').replace(']', '').split()
+re_route = re.sub('[^a-zA-Z0-9-/ \n.]', '', ospf_route)
+route_info = re_route.split()
 
 template = """
 Prefix                {}
@@ -32,3 +33,4 @@ Last update           {}
 Outbound Interface    {}
 """.format(route_info[0], route_info[1], route_info[3], route_info[4], route_info[-1])
 print(template)
+
