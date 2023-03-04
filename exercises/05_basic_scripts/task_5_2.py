@@ -35,6 +35,7 @@ ip, mask = ip_address.split('/')
 ip_list = [int(i) for i in ip.split('.')]
 mask = int(mask)
 bin_mask = "1" * mask + '0' * (32 - mask)
+
 m1, m2, m3, m4 = [
     int(bin_mask[0:8], 2),
     int(bin_mask[8:16], 2),
