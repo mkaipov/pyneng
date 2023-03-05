@@ -17,3 +17,34 @@
 
 Ограничение: Все задания надо выполнять используя только пройденные темы.
 """
+
+ip = [i for i in (input('Введите ip адрес: ')).split('.')]
+
+Flag = True
+if len(ip) != 4:
+    Flag = False
+
+for i in ip:
+    try:
+        if 1 <= int(i) <= 255:
+            continue
+        elif int(i) == 0:
+            continue
+        else:
+            Flag = False
+    except:
+        Flag = False
+
+if not Flag:
+    print('Неправильный IP-адрес')
+else:
+    if 1 < int(ip[0]) < 223:
+        print('unicast')
+    elif 224 < int(ip[0]) < 239:
+        print('multicast')
+    elif '.'.join(ip) == '0.0.0.0':
+        print('unassigned')
+    elif '.'.join(ip) == '255.255.255.255':
+        print('local broadcast')
+    else:
+        print('unused')
