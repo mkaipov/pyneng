@@ -49,18 +49,12 @@ bin_ip = "00001010000000010000000111000011"
 Ограничение: Все задания надо выполнять используя только пройденные темы.
 
 """
+from netaddr import *
 
-ip_address = input('Введите адрес сети: ')
-ip, mask = ip_address.split('/')
-ip_list = [int(i) for i in ip.split('.')]
-mask = int(mask)
-bin_mask = "1" * mask + '0' * (32 - mask)
-m1, m2, m3, m4 = [
-    int(bin_mask[0:8], 2),
-    int(bin_mask[8:16], 2),
-    int(bin_mask[16:24], 2),
-    int(bin_mask[24:32], 2),
-]
+ip_address = IPNetwork(input('Введите адрес сети: '))
+ip_net = [i for i in str(ip_address.network).split('.')]
+print(ip_net)
+
 
 
 ip_output = """
@@ -75,5 +69,7 @@ Mask:
 {1:08b}  {2:08b}  {3:08b}  {4:08b}
 """
 
-print(ip_output.format(ip_list[0], ip_list[1], ip_list[2], ip_list[3]))
-print(mask_output.format(mask, m1, m2, m3, m4))
+"""
+print(ip_output.format()
+print(mask_output.format(mask, mask_list[0], mask_list[1], mask_list[2], mask_list[3]))
+"""

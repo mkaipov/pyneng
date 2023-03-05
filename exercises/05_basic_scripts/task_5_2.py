@@ -33,9 +33,10 @@ Out[1]: '11111111111111111111111111110000'
 ip_address = input('Введите адрес сети: ')
 ip, mask = ip_address.split('/')
 ip = [int(i) for i in ip.split('.')]
-bin_ip = [bin(i) for i in ip]
+bin_ip_list = [bin(i) for i in ip]
 bin_mask = '1' * int(mask) + '0' * (32 - int(mask))
-m1, m2, m3, m4 = bin_mask[0:8], bin_mask[8:16], bin_mask[16:24], bin_mask[24:32]
+mask_list = [int(bin_mask[0:8], 2), int(bin_mask[8:16], 2), int(bin_mask[16:24], 2), int(bin_mask[24:32], 2)]
+bin_mask_list = [bin(i) for i in mask_list]
 
 ip_output = """
 Network:
@@ -50,4 +51,4 @@ Mask:
 """
 
 print(ip_output.format(ip[0], ip[1], ip[2], ip[3]))
-print(mask_output.format(mask, int(m1, 2), int(m2, 2), int(m3, 2), int(m4, 2)))
+print(mask_output.format(mask, mask_list[0], mask_list[1], mask_list[2], mask_list[3]))
