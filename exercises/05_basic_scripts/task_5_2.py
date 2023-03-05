@@ -30,13 +30,12 @@ Out[1]: '11111111111111111111111111110000'
 
 Ограничение: Все задания надо выполнять используя только пройденные темы.
 """
-ip_address = input('Введите адрес сети: ')
-ip, mask = ip_address.split('/')
-ip = [int(i) for i in ip.split('.')]
-bin_ip_list = [bin(i) for i in ip]
-bin_mask = '1' * int(mask) + '0' * (32 - int(mask))
-mask_list = [int(bin_mask[0:8], 2), int(bin_mask[8:16], 2), int(bin_mask[16:24], 2), int(bin_mask[24:32], 2)]
-bin_mask_list = [bin(i) for i in mask_list]
+
+from netaddr import *
+
+ip_address = IPNetwork(input('Введите адрес сети: '))
+ip_net = [int(i) for i in str(ip_address.network).split('.')]
+ip_mask = [int(i) for i in str(ip_address.netmask).split('.')]
 
 ip_output = """
 Network:
@@ -50,5 +49,5 @@ Mask:
 {1:08b}  {2:08b}  {3:08b}  {4:08b}
 """
 
-print(ip_output.format(ip[0], ip[1], ip[2], ip[3]))
-print(mask_output.format(mask, mask_list[0], mask_list[1], mask_list[2], mask_list[3]))
+print(ip_output.format(ip_net[0], ip_net[1], ip_net[2], ip_net[3]))
+print(mask_output.format(ip_address.prefixlen, ip_mask[0], ip_mask[1], ip_mask[2], ip_mask[3]))
