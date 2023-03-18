@@ -16,4 +16,15 @@
 
 """
 
+from sys import argv
+
 ignore = ["duplex", "alias", "configuration"]
+
+conf_file = argv[1]
+
+with open(conf_file) as config:
+    for i in config:
+        line = i.split()
+        line_intersect = set(line) & set(ignore)
+        if not i.startswith("!") and not line_intersect:
+            print(i.rstrip())
