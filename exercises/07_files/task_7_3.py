@@ -20,3 +20,12 @@
 Ограничение: Все задания надо выполнять используя только пройденные темы.
 
 """
+
+template = """{0:<9}{1:<20}{2}"""
+
+with open('CAM_table.txt') as cam_table:
+    for line in cam_table:
+        lst_line = line.split()
+        if lst_line and lst_line[0].isdigit():
+            print(template.format(lst_line[0], lst_line[1], lst_line[3]))
+
