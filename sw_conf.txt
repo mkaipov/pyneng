@@ -1,0 +1,15 @@
+interface Gi1/1
+switchport mode access
+dot1x port-control auto
+dot1x guest-vlan 185
+dot1x auth-fail vlan 186
+interface Gi1/2
+switchport mode access
+dot1x port-control auto
+dot1x guest-vlan 185
+dot1x auth-fail vlan 186
+interface Gi1/3
+switchport mode access
+dot1x port-control auto
+dot1x guest-vlan 185
+dot1x auth-fail vlan 186
